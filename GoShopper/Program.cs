@@ -1,3 +1,4 @@
+using GoShopper.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 
