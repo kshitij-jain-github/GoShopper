@@ -1,6 +1,11 @@
-﻿namespace GoShopper.Data
+﻿using Microsoft.EntityFrameworkCore;
+
+namespace GoShopper.Data
 {
-    public class AppDbContext
+    public class AppDbContext:DbContext
     {
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
     }
 }
