@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using GoShopper.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace GoShopper.Data
 {
@@ -7,5 +8,6 @@ namespace GoShopper.Data
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {
         }
+        public DbSet<Category> Categories { get; set; }
     }
 }
