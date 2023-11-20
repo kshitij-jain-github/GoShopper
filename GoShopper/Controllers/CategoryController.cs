@@ -27,7 +27,9 @@ namespace GoShopper.Controllers
             {
                 _db.Categories.Add(obj);
                 _db.SaveChanges();
-            return RedirectToAction("Index");
+                TempData["success"] = "Category created successfully";
+
+                return RedirectToAction("Index");
             }
             return View();  
         }
