@@ -2,9 +2,9 @@
 
 #nullable disable
 
-namespace GoShopper.Migrations
+namespace GoShopper.DataAccess.Migrations
 {
-    public partial class addCategoryList : Migration
+    public partial class addCategoryDbTable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

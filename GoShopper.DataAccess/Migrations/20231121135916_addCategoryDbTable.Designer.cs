@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace GoShopper.Migrations
+namespace GoShopper.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231119062358_addCategoryList")]
-    partial class addCategoryList
+    [Migration("20231121135916_addCategoryDbTable")]
+    partial class addCategoryDbTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
