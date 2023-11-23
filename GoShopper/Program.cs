@@ -1,4 +1,6 @@
 using GoShopper.Data;
+using GoShopper.DataAccess.Repository;
+using GoShopper.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
 using System;
 
@@ -9,7 +11,7 @@ builder.Services.AddControllersWithViews();
 var connection = builder.Configuration.GetConnectionString("DefaultConnection");
 
 builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connection));
-
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

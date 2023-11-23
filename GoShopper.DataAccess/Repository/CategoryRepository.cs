@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace GoShopper.DataAccess.Repository
 {
-    internal class CategoryRepositroy : Repository<Category>, ICategoryRepository
+    public class CategoryRepository : Repository<Category>, ICategoryRepository
     {
         private AppDbContext _db;
-        public CategoryRepositroy(AppDbContext db) : base(db)
+        public CategoryRepository(AppDbContext db) : base(db)
         {
             _db = db;
         }
