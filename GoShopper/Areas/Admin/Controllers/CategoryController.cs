@@ -3,23 +3,25 @@ using GoShopper.DataAccess.Repository.IRepository;
 using GoShopper.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GoShopper.Controllers
+namespace GoShopper.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork; 
-        public CategoryController(IUnitOfWork unitOfWork) {
+        private readonly IUnitOfWork _unitOfWork;
+        public CategoryController(IUnitOfWork unitOfWork)
+        {
             _unitOfWork = unitOfWork;
-        } 
+        }
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();   
+            List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
 
         public IActionResult Create()
         {
-            return View();  
+            return View();
         }
         [HttpPost]
         public IActionResult Create(Category obj)
@@ -32,7 +34,7 @@ namespace GoShopper.Controllers
 
                 return RedirectToAction("Index");
             }
-            return View();  
+            return View();
         }
         public IActionResult Edit(int? id)
         {
