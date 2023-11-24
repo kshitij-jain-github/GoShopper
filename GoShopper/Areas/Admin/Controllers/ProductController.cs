@@ -1,6 +1,7 @@
 ﻿using GoShopper.Data;
 using GoShopper.DataAccess.Repository.IRepository;
 using GoShopper.Models;
+using GoShopper.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
@@ -22,67 +23,59 @@ namespace GoShopper.Areas.Admin.Controllers
             return View(objProductList);
         }
 
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {
-            IEnumerable<SelectListItem> categoryList = _unitOfWork.Category
-            .GetAll().ToList().Select(u => new SelectListItem
+            ProductViewModel productVM = new()
             {
-                Text = u.Name,
-                Value = u.Id.ToString()
-            });
-            ViewBag.Category = categoryList;    
-            return View();
+                CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                }),
+                Product = new Product()
+            };
+            if (id == null || id == 0)
+            {
+                //create
+                return View(productVM);
+            }
+            else
+            {
+                //update
+                productVM.Product = _unitOfWork.Product.Get(u => u.Id == id, includeProperties: "ProductImages");
+                return View(productVM);
+            }
         }
         [HttpPost]
-        public IActionResult Create(Product obj)
+        public IActionResult Upsert(ProductViewModel  productViewModel, List<IFormFile> file)
         {
             if (ModelState.IsValid)
             {
-                _unitOfWork.Product.Add(obj);
+                if (productViewModel.Product.Id == 0)
+                {
+                    _unitOfWork.Product.Add(productViewModel.Product);
+                }
+                else
+                {
+                    _unitOfWork.Product.Update(productViewModel.Product);
+                }
+
                 _unitOfWork.Save();
                 TempData["success"] = "Product created successfully";
 
                 return RedirectToAction("Index");
             }
-            return View();
-        }
-        public IActionResult Edit(int? id)
-        {
-            IEnumerable<SelectListItem> categoryList = _unitOfWork.Category
-            .GetAll().ToList().Select(u => new SelectListItem
+            else
             {
-                Text = u.Name,
-                Value = u.Id.ToString()
-            });
-            ViewBag.Category = categoryList;
-            if (id == null || id == 0)
-            {
-                return NotFound();
+                productViewModel.CategoryList = _unitOfWork.Category.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                });
+                return View(productViewModel);
             }
-            Product? ProductFromDb = _unitOfWork.Product.Get(u => u.Id == id);
-          
-            //Product? ProductFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
-            //Product? ProductFromDb2 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault();
-
-            if (ProductFromDb == null)
-            {
-                return NotFound();
-            }
-            return View(ProductFromDb);
-        }
-        [HttpPost]
-        public IActionResult Edit(Product obj)
-        {
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Product.Update(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Product updated successfully";
-                return RedirectToAction("Index");
-            }
-            return View();
-
-        }
+         }
+      
         public IActionResult Delete(int? id)
         {
             IEnumerable<SelectListItem> categoryList = _unitOfWork.Category
