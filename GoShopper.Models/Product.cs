@@ -20,8 +20,6 @@ namespace GoShopper.Models
         [Required]
         public string ISBN { get; set; }
         [Required]
-        public string Author { get; set; }
-        [Required]
         [Display(Name = "List Price")]
         [Range(1, 1000)]
         public double ListPrice { get; set; }
@@ -48,6 +46,6 @@ namespace GoShopper.Models
         public Category Category { get; set; }
 
         [ValidateNever]
-        public List<ProductImage> ProductImages { get; set; }
+        public string ProductImage { get; set; }
     }
 }
