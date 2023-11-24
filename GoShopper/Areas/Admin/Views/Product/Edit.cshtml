@@ -41,6 +41,13 @@
                     <input asp-for="Price100" class="form-control border-0 shadow" />
                     <label asp-for="Price100" class="ms-2"></label>
                     <span asp-validation-for="Price100" class="text-danger"></span>
+                </div>   
+                <div class="form-floating py-2 col-12">
+                    <select asp-for="CategoryId" asp-items="ViewBag.Category" class="form-select border-0 shadow">
+                        <option disabled selected> -- Select Category</option>
+                    </select>
+                    <label asp-for="CategoryId" class="ms-2"></label>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
                 </div>
                 <div class="form-floating py-2 col-12">
                     <textarea asp-for="Description"  class="form-control border-0 shadow"> </textarea> 

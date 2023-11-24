@@ -48,6 +48,13 @@ namespace GoShopper.Areas.Admin.Controllers
         }
         public IActionResult Edit(int? id)
         {
+            IEnumerable<SelectListItem> categoryList = _unitOfWork.Category
+            .GetAll().ToList().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString()
+            });
+            ViewBag.Category = categoryList;
             if (id == null || id == 0)
             {
                 return NotFound();
@@ -78,6 +85,13 @@ namespace GoShopper.Areas.Admin.Controllers
         }
         public IActionResult Delete(int? id)
         {
+            IEnumerable<SelectListItem> categoryList = _unitOfWork.Category
+           .GetAll().ToList().Select(u => new SelectListItem
+           {
+               Text = u.Name,
+               Value = u.Id.ToString()
+           });
+            ViewBag.Category = categoryList; 
             if (id == null || id == 0)
             {
                 return NotFound();
