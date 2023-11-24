@@ -2,6 +2,7 @@
 using GoShopper.DataAccess.Repository.IRepository;
 using GoShopper.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace GoShopper.Areas.Admin.Controllers
 {
@@ -16,11 +17,20 @@ namespace GoShopper.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
+        
+        
             return View(objProductList);
         }
 
         public IActionResult Create()
         {
+            IEnumerable<SelectListItem> categoryList = _unitOfWork.Category
+            .GetAll().ToList().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString()
+            });
+            ViewBag.Category = categoryList;    
             return View();
         }
         [HttpPost]
@@ -43,6 +53,7 @@ namespace GoShopper.Areas.Admin.Controllers
                 return NotFound();
             }
             Product? ProductFromDb = _unitOfWork.Product.Get(u => u.Id == id);
+          
             //Product? ProductFromDb1 = _db.Categories.FirstOrDefault(u=>u.Id==id);
             //Product? ProductFromDb2 = _db.Categories.Where(u=>u.Id==id).FirstOrDefault();
 
