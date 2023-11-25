@@ -4,7 +4,7 @@
     <div class="card-header bg-secondary bg-gradient ml-0 py-3">
     <div class="row">
         <div class="col-12 text-center">
-                <h2 class="text-white py-2"> @(Model.Product.Id!=0?"Update":"Create") Product</h2>
+                <h2 class="py-2"> @(Model.Product.Id!=0?"Update":"Create") Product</h2>
         </div>
     </div>
     </div>
@@ -21,10 +21,7 @@
                             <label asp-for="Product.Name" class="ms-2"></label>
                             <span asp-validation-for="Product.Name" class="text-danger"></span>
                         </div>
-                        <div class="py-2 col-12">
-                            <label asp-for="Product.Description" class="ms-2 text-muted"></label>
-                            <textarea asp-for="Product.Description" class="form-control border-0 shadow"></textarea>
-                        </div>
+                     
 
                         <div class="form-floating py-2 col-12">
                             <input asp-for="Product.ISBN" class="form-control border-0 shadow" />
@@ -62,7 +59,14 @@
                             <label asp-for="Product.CategoryId" class="ms-2"></label>
                             <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
                         </div>
-                      
+                        <div class="form-floating py-2 col-12">
+                            <input type="file" name="files" class="form-control border-0 shadow" multiple />
+                            <label asp-for="Product.ProductImage" class="ms-2"></label>
+                        </div>
+                        <div class="py-2 col-12">
+                            <label asp-for="Product.Description" class="ms-2 text-muted"></label>
+                            <textarea asp-for="Product.Description" class="form-control border-0 shadow"></textarea>
+                        </div>
                         <div class="row pt-2">
                             <div class="col-6 col-md-3">
                                 @if (Model.Product.Id != 0)
@@ -98,8 +102,15 @@
     <script>
         tinymce.init({
             selector: 'textarea',
-            plugins: 'anchor autolink charmap codesample emoticons  lists   table visualblocks wordcount',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent',
+            plugins: 'ai tinycomments mentions anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed permanentpen footnotes advtemplate advtable advcode editimage tableofcontents mergetags powerpaste tinymcespellchecker autocorrect a11ychecker typography inlinecss',
+            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | align lineheight | tinycomments | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+            tinycomments_mode: 'embedded',
+            tinycomments_author: 'Author name',
+            mergetags_list: [
+                { value: 'First.Name', title: 'First Name' },
+                { value: 'Email', title: 'Email' },
+            ],
+            ai_request: (request, respondWith) => respondWith.string(() => Promise.reject("See docs to implement AI Assistant")),
         });
     </script>
     @{
