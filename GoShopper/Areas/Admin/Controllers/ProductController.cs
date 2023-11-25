@@ -11,9 +11,11 @@ namespace GoShopper.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public ProductController(IUnitOfWork unitOfWork)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public ProductController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
+            _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
         {
@@ -47,10 +49,11 @@ namespace GoShopper.Areas.Admin.Controllers
             }
         }
         [HttpPost]
-        public IActionResult Upsert(ProductViewModel  productViewModel, List<IFormFile> file)
+        public IActionResult Upsert(ProductViewModel  productViewModel, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
+               
                 if (productViewModel.Product.Id == 0)
                 {
                     _unitOfWork.Product.Add(productViewModel.Product);
@@ -59,8 +62,21 @@ namespace GoShopper.Areas.Admin.Controllers
                 {
                     _unitOfWork.Product.Update(productViewModel.Product);
                 }
-
                 _unitOfWork.Save();
+  
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string productPath = @"Images\Products\";
+                    string finalPath = Path.Combine(wwwRootPath, productPath);
+                    using (var fileStream = new FileStream(Path.Combine(finalPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+                    productViewModel.Product.ProductImage = @"\Images\Products\" + fileName;
+
+                }
                 TempData["success"] = "Product created successfully";
 
                 return RedirectToAction("Index");
