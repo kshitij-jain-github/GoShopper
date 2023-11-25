@@ -42,7 +42,7 @@ namespace GoShopper.Areas.Admin.Controllers
             else
             {
                 //update
-                productVM.Product = _unitOfWork.Product.Get(u => u.Id == id, includeProperties: "ProductImages");
+                productVM.Product = _unitOfWork.Product.Get(u => u.Id == id );
                 return View(productVM);
             }
         }
