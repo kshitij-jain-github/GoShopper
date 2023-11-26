@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GoShopper.DataAccess.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231124062216_addProductToDB")]
-    partial class addProductToDB
+    [Migration("20231126044513_INITIAL")]
+    partial class INITIAL
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -80,6 +80,7 @@ namespace GoShopper.DataAccess.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("ProductImage")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

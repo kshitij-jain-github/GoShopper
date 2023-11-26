@@ -78,6 +78,7 @@ namespace GoShopper.DataAccess.Migrations
                         .HasColumnType("float");
 
                     b.Property<string>("ProductImage")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");

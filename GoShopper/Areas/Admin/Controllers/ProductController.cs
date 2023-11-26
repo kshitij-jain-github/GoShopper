@@ -54,15 +54,7 @@ namespace GoShopper.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                
-                if (productViewModel.Product.Id == 0)
-                {
-                    _unitOfWork.Product.Add(productViewModel.Product);
-                }
-                else
-                {
-                    _unitOfWork.Product.Update(productViewModel.Product);
-                }
-                _unitOfWork.Save();
+               
   
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
                 if (file != null)
@@ -77,6 +69,15 @@ namespace GoShopper.Areas.Admin.Controllers
                     productViewModel.Product.ProductImage = @"\Images\Products\" + fileName;
 
                 }
+                if (productViewModel.Product.Id == 0)
+                {
+                    _unitOfWork.Product.Add(productViewModel.Product);
+                }
+                else
+                {
+                    _unitOfWork.Product.Update(productViewModel.Product);
+                }
+                _unitOfWork.Save();
                 TempData["success"] = "Product created successfully";
 
                 return RedirectToAction("Index");

@@ -46,6 +46,6 @@ namespace GoShopper.Models
         public Category Category { get; set; }
 
         [ValidateNever]
-        public string? ProductImage { get; set; }
+        public string ProductImage { get; set; }
     }
 }
