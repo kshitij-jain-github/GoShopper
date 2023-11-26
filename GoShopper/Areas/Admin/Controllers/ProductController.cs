@@ -62,6 +62,17 @@ namespace GoShopper.Areas.Admin.Controllers
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string productPath = @"Images\Products\";
                     string finalPath = Path.Combine(wwwRootPath, productPath);
+
+                    if (!string.IsNullOrEmpty(productViewModel.Product.ProductImage))
+                    {
+                        //delete the old image
+                        var oldImagePath =
+                        Path.Combine(wwwRootPath, productViewModel.Product.ProductImage.TrimStart('\\'));
+                        if (System.IO.File.Exists(oldImagePath))
+                            System.IO.File.Delete(oldImagePath);
+                    }
+                    
+
                     using (var fileStream = new FileStream(Path.Combine(finalPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
