@@ -18,6 +18,8 @@ namespace GoShopper.DataAccess.Repository
         {
             _db=db;
             this.dbSet=_db.Set<T>();
+            _db.Products.Include(u => u.Category).Include(u => u.CategoryId);
+
         }
         public void Add(T entity)
         {
@@ -27,7 +29,15 @@ namespace GoShopper.DataAccess.Repository
         public T Get(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = false)
         {
             IQueryable<T> query =  dbSet;
-            query = query.Where(filter);
+            query = query.Where(filter); 
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
             return query.FirstOrDefault();
             
         }
@@ -35,7 +45,15 @@ namespace GoShopper.DataAccess.Repository
         public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
         {
             IQueryable<T> query = dbSet;
-             return query.ToList();
+            if (!string.IsNullOrEmpty(includeProperties))
+            {
+                foreach (var includeProp in includeProperties
+                    .Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    query = query.Include(includeProp);
+                }
+            }
+            return query.ToList();
         }
 
         public void Remove(T entity)
