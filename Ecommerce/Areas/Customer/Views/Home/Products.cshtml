@@ -25,7 +25,7 @@
 <body>
     <div class="container">
         <!-- Filter Form -->
-        <form id="filterForm" class="m-4">
+        <form id="filterForm" class="m-4  ">
             <div class="row">
                 <!-- Search Field -->
                 <div class="col-md-3">
@@ -96,16 +96,16 @@
                                 <img src="@product.ImageUrl" class="img-fluid product-thumbnail" alt="@product.Product_Name" />
                                 <h3 class="product-title">@product.Product_Name</h3>
                                 <h6>
-                                    <span class="badge bg-success ms-2">@product.Brand</span>
-                                    <span class="badge bg-dark ms-2">@product.Fabric</span>
-                                    <span class="badge bg-secondary ms-2">@product.Category.Name</span>
+                                    <span class="badge bg-success m-1">@product.Brand</span>
+                                    <span class="badge bg-dark m-1">@product.Fabric</span>
+                                    <span class="badge bg-secondary m-1">@product.Category.Name</span>
                                 </h6>
                                 <h6 class="text-success">Free shipping</h6>
                                 <p>
                                     <strong class="product-price">$@product.Price <span class="text-danger h6"><s>$@product.ListPrice</s></span></strong>
                                 </p>
                                 <span class="icon-cross">
-                                    <img src="images/cross.svg" class="img-fluid" alt="Add to cart" /> Add to cart
+                                    <img src="~/images/cross.svg" class="img-fluid" alt="Add to cart" />  
                                 </span>
                             </a>
                         </div>
