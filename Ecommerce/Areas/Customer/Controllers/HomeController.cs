@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
 using System.Security.Claims;
 
+
 namespace Ecommerce.Areas.Customer.Controllers
 {
     [Area("Customer")]
@@ -74,13 +75,84 @@ namespace Ecommerce.Areas.Customer.Controllers
             TempData["success"] = "Cart Updated SuccessFully";
             return RedirectToAction(nameof(Index));
         }
-
-
-
-        public IActionResult Privacy()
+        [HttpGet]
+        public IActionResult Products(string search, int? category, string brand, string sort, double? minPrice, double? maxPrice)
         {
-            return View();
+            // Retrieve all products with Category details.
+            IEnumerable<Product> products = _unitOfWork.Product.GetAll(includeProperties: "Category");
+
+            // Convert to IQueryable for LINQ filtering.
+            var query = products.AsQueryable();
+
+            // Apply search filter by product name (case-insensitive).
+            if (!string.IsNullOrEmpty(search))
+            {
+                query = query.Where(p => p.Product_Name.IndexOf(search, StringComparison.OrdinalIgnoreCase) >= 0);
+            }
+
+            // Filter by category.
+            if (category.HasValue)
+            {
+                query = query.Where(p => p.Category.Id == category.Value);
+            }
+
+            // Filter by brand.
+            if (!string.IsNullOrEmpty(brand))
+            {
+                query = query.Where(p => p.Brand.Equals(brand, StringComparison.OrdinalIgnoreCase));
+            }
+
+            // Apply price filters.
+            if (minPrice.HasValue)
+            {
+                query = query.Where(p => p.Price >= minPrice.Value);
+            }
+            if (maxPrice.HasValue)
+            {
+                query = query.Where(p => p.Price <= maxPrice.Value);
+            }
+
+            // Sorting logic.
+            if (!string.IsNullOrEmpty(sort))
+            {
+                switch (sort)
+                {
+                    case "priceAsc":
+                        query = query.OrderBy(p => p.Price);
+                        break;
+                    case "priceDesc":
+                        query = query.OrderByDescending(p => p.Price);
+                        break;
+                    case "nameAsc":
+                        query = query.OrderBy(p => p.Product_Name);
+                        break;
+                    case "nameDesc":
+                        query = query.OrderByDescending(p => p.Product_Name);
+                        break;
+                    default:
+                        query = query.OrderBy(p => p.Product_Name);
+                        break;
+                }
+            }
+            else
+            {
+                // Default sort order.
+                query = query.OrderBy(p => p.Product_Name);
+            }
+
+            // Populate ViewBag for dropdown filters and current selections.
+            ViewBag.Categories = _unitOfWork.Category.GetAll().ToList();
+            ViewBag.Brands = _unitOfWork.Product.GetAll().Select(p => p.Brand).Distinct().ToList();
+            ViewBag.Search = search;
+            ViewBag.SelectedCategory = category;
+            ViewBag.SelectedBrand = brand;
+            ViewBag.Sort = sort;
+            ViewBag.MinPrice = minPrice;
+            ViewBag.MaxPrice = maxPrice;
+
+            return View(query.ToList());
         }
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

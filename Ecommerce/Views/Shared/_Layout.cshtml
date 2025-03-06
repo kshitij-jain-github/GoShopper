@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="//cdn.datatables.net/2.0.7/css/dataTables.dataTables.min.css" asp-append-version="true" />
  
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-    <link href="~/css/tiny-slider.css" rel="stylesheet" />
+ 
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
           rel="stylesheet" />
 
@@ -35,18 +35,22 @@
                     <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
                         <li class="nav-item active">
                             <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index" >Home</a>
+                          
                         </li>
+						<li>
+							<a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Products">Shop</a>
+						</li>
                         <li><a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">Manage Order</a></li>
                         <li><a class="nav-link" asp-area="Admin" asp-controller="Category" asp-action="Index"   >Category</a></li>
                         <li><a class="nav-link" asp-area="Admin" asp-controller="Product" asp-action="Index"  >Product</a></li>
                         <li><a class="nav-link" asp-area="Admin" asp-controller="Company" asp-action="Index" >Company</a></li>
-                        <li><a class="nav-link" >Contact us</a></li>
+                       
                     </ul>
 
                     <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
-                        <li><a class="nav-link" ><img src="images/user.svg"></a></li>
-                        <li><a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index"><img src="images/cart.svg"></a></li>
-                        <li>                            <partial name="_LoginPartial" /></li>
+                        
+                        <li><a class="nav-link" asp-area="Customer" asp-controller="Cart" asp-action="Index"><img src="images/cart.svg"> </a></li>
+                                            <partial name="_LoginPartial" /> 
                     </ul>
                 </div>
             </div>
@@ -55,13 +59,13 @@
         <!-- End Header/Navigation -->
            
      </header>
-    <div class="container ">
-        <main role="main" class="pb-3">
+    
+        <main role="main" class=" me-0 ">
             <partial name="_Notification" />
 
             @RenderBody()
         </main>
-    </div>
+ 
 	<!-- Start Footer Section -->
 	<footer class="footer-section">
 		<div class="container relative">

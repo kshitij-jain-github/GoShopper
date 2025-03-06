@@ -1,0 +1,182 @@
+﻿@model IEnumerable<Ecommerce.Model.Product>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Product Listing</title>
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .product-item {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .icon-cross {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Filter Form -->
+        <form id="filterForm" class="m-4">
+            <div class="row">
+                <!-- Search Field -->
+                <div class="col-md-3">
+                    <input type="text" id="search" class="form-control" placeholder="Search products..." />
+                </div>
+                <!-- Category Filter -->
+                <div class="col-md-2">
+                    <select id="category" class="form-control">
+                        <option value="">All Categories</option>
+                        @if (ViewBag.Categories != null)
+                        {
+                            foreach (var cat in ViewBag.Categories as List<Ecommerce.Model.Category>)
+                            {
+                                <option value="@cat.Name">@cat.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <!-- Brand Filter -->
+                <div class="col-md-2">
+                    <select id="brand" class="form-control">
+                        <option value="">All Brands</option>
+                        @if (ViewBag.Brands != null)
+                        {
+                            foreach (var b in ViewBag.Brands as List<string>)
+                            {
+                                <option value="@b">@b</option>
+                            }
+                        }
+                    </select>
+                </div>
+                <!-- Price Filters -->
+                <div class="col-md-1">
+                    <input type="number" step="any" id="minPrice" class="form-control" placeholder="Min Price" />
+                </div>
+                <div class="col-md-1">
+                    <input type="number" step="any" id="maxPrice" class="form-control" placeholder="Max Price" />
+                </div>
+                <!-- Sort Options -->
+                <div class="col-md-2">
+                    <select id="sort" class="form-control">
+                        <option value="">Sort By</option>
+                        <option value="priceAsc">Price: Low to High</option>
+                        <option value="priceDesc">Price: High to Low</option>
+                        <option value="nameAsc">Name: A-Z</option>
+                        <option value="nameDesc">Name: Z-A</option>
+                    </select>
+                </div>
+                <!-- Apply Button -->
+                <div class="col-md-1">
+                    <button type="button" id="applyFilters" class="btn btn-primary">Apply</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Product Listing using your designed card -->
+        <div class="untree_co-section mt-0 pt-0 product-section before-footer-section">
+            <div class="container">
+                <div class="row" id="productList">
+                    @foreach (var product in Model)
+                    {
+                        <div class="col-12 col-md-4 col-lg-3 mb-5 product-card"
+                             data-name="@product.Product_Name"
+                             data-brand="@product.Brand"
+                             data-category="@product.Category.Name"
+                             data-price="@product.Price">
+                            <a class="product-item" asp-action="Details" asp-route-productId="@product.Id">
+                                <img src="@product.ImageUrl" class="img-fluid product-thumbnail" alt="@product.Product_Name" />
+                                <h3 class="product-title">@product.Product_Name</h3>
+                                <h6>
+                                    <span class="badge bg-success ms-2">@product.Brand</span>
+                                    <span class="badge bg-dark ms-2">@product.Fabric</span>
+                                    <span class="badge bg-secondary ms-2">@product.Category.Name</span>
+                                </h6>
+                                <h6 class="text-success">Free shipping</h6>
+                                <p>
+                                    <strong class="product-price">$@product.Price <span class="text-danger h6"><s>$@product.ListPrice</s></span></strong>
+                                </p>
+                                <span class="icon-cross">
+                                    <img src="images/cross.svg" class="img-fluid" alt="Add to cart" /> Add to cart
+                                </span>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            // Clone the complete set of product cards on page load.
+            var $allCards = $('#productList .product-card').clone();
+
+            function filterProducts() {
+                var search = $('#search').val().toLowerCase();
+                var category = $('#category').val().toLowerCase();
+                var brand = $('#brand').val().toLowerCase();
+                var minPrice = parseFloat($('#minPrice').val());
+                var maxPrice = parseFloat($('#maxPrice').val());
+                var sortOption = $('#sort').val();
+
+                // Filter from the cloned set so hidden cards can be restored.
+                var $filteredCards = $allCards.filter(function(){
+                    var $card = $(this);
+                    var productName = $card.data('name').toLowerCase();
+                    var productBrand = $card.data('brand').toLowerCase();
+                    var productCategory = $card.data('category').toLowerCase();
+                    var productPrice = parseFloat($card.data('price'));
+
+                    var matchesSearch = productName.indexOf(search) !== -1;
+                    var matchesCategory = category === "" || productCategory === category;
+                    var matchesBrand = brand === "" || productBrand === brand;
+                    var matchesMinPrice = isNaN(minPrice) || productPrice >= minPrice;
+                    var matchesMaxPrice = isNaN(maxPrice) || productPrice <= maxPrice;
+
+                    return matchesSearch && matchesCategory && matchesBrand && matchesMinPrice && matchesMaxPrice;
+                });
+
+                // Sort the filtered cards.
+                var sortedCards = $filteredCards.get();
+                sortedCards.sort(function(a, b) {
+                    var aPrice = parseFloat($(a).data('price'));
+                    var bPrice = parseFloat($(b).data('price'));
+                    var aName = $(a).data('name').toLowerCase();
+                    var bName = $(b).data('name').toLowerCase();
+
+                    if(sortOption === "priceAsc") {
+                        return aPrice - bPrice;
+                    } else if(sortOption === "priceDesc") {
+                        return bPrice - aPrice;
+                    } else if(sortOption === "nameAsc") {
+                        return aName.localeCompare(bName);
+                    } else if(sortOption === "nameDesc") {
+                        return bName.localeCompare(aName);
+                    }
+                    return 0;
+                });
+
+                // Re-append the sorted and filtered cards.
+                $('#productList').html(sortedCards);
+            }
+
+            // Bind filtering to the Apply button and input changes.
+            $('#applyFilters').click(function(){
+                filterProducts();
+            });
+            $('#search, #category, #brand, #minPrice, #maxPrice, #sort').on('change keyup', function(){
+                filterProducts();
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,5 +1,4 @@
-﻿@model IEnumerable<Product>
-
+﻿ 
 <!-- Start Hero Section -->
 <div class="hero">
 	<div class="container">
@@ -20,6 +19,7 @@
 	</div>
 </div>
 <!-- End Hero Section -->
+ 
 <!-- Start Product Section -->
 <div class="product-section">
 	<div class="container">
@@ -364,67 +364,3 @@
 	</div>
 </div>
 <!-- End Blog Section -->
-
-<!--Main layout-->
-<main>
-    <div class="container">
-     
-        <!-- Products -->
-        <section>
-            <div class="text-center">
-                <div class="row">
-
-                	@foreach (var product in Model)
-                {
-                  
-                    <div class="col-lg-3 col-md-6 mb-4 " >
-                        <div class="card">
-                            <div class="bg-image hover-zoom ripple ripple-surface ripple-surface-light"
-                                 data-mdb-ripple-color="light">
-                                <img src="@product.ImageUrl" width="250" height="300" class="p-3"/>
-                                <a href="#!">
-                                    <div class="mask">
-                                        <div class="d-flex justify-content-start align-items-end h-100">
-                                            <h5><span class="badge bg-success ms-2">NEW</span></h5>
-                                        </div>
-                                    </div>
-                                    <div class="hover-overlay">
-                                        <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="card-body " >
-                                <a href="" class="text-reset">
-                                    <h5 class="card-title mb-2">@product.Product_Name</h5>
-                                        <h6>by @product.Brand</h6>
-                                </a>
-                                <a href="" class="text-reset ">
-                                  <b>@product.Category.Name</b>
-                                </a>
-                                 <div class="mt-1 mb-0 text-muted small">
-                                            <span><b>Fabric: </b>@product.Fabric</span>
-                                          
-
-                                    </div>
-                                    <h4 class="mb-1 me-1">$@product.Price  <span class="text-danger h6"><s>$@product.ListPrice</s></span></h4>
-                                   
-                                    <h6 class="text-success">Free shipping</h6>
-                                    <div class="d-flex flex-column mt-4">
-                                        <a asp-action="Details" asp-route-productId="@product.Id" class="btn btn-primary btn-sm" type="button">Details</a>
-                                       
-                                    </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-
-}
-            
-            </div>
-            </div>
-
-        </section>
- 
-    </div>
-</main>
-<!--Main layout--> 
