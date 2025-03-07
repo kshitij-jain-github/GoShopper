@@ -29,6 +29,7 @@ namespace Ecommerce.Areas.Customer.Controllers
         {
 
             IEnumerable<Product> productList = _unitOfWork.Product.GetAll(includeProperties: "Category");
+            ViewBag.Categories = _unitOfWork.Category.GetAll().ToList();
 
             return View(productList);
         }
