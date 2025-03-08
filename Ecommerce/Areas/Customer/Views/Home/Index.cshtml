@@ -27,7 +27,6 @@
 		</div>
 	</div>
 </nav>
-
 <!-- Start Hero Section -->
 <div class="hero">
 	<div class="container">
@@ -48,19 +47,12 @@
 	</div>
 </div>
 <!-- End Hero Section -->
- 
 <!-- Start Product Section -->
 <div class="product-section">
 	<div class="container">
 		<div class="row">
-
-			<!-- Start Column 1 -->
-			<div class="col-md-12 col-lg-3 mb-5 mb-lg-0">
-				<h2 class="mb-4 section-title">Crafted with excellent material.</h2>
-				<p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. </p>
-				<p><a href="shop.html" class="btn">Explore</a></p>
-			</div>
-			<!-- End Column 1 -->
+	<h1 class="text-center pb-4"> Explore Categories</h1>
+ 
 			<!-- Start Popular Product -->
 			<div class="popular-product">
 				<div class="container">
@@ -108,9 +100,11 @@
 											</a>
 										</div>
 										<div class="pt-3">
+											<a href="@Url.Action("Products", "Home", new { area = "Customer", category = category.Id })">
 											<h3>@category.Name</h3>
 											<p>Explore our latest collection of @category.Name and find the perfect fit for you.</p>
-											<p><a href="@Url.Action("Products", "Home", new { area = "Customer", category = category.Id })">View More</a></p>
+											<p>View More</p>
+											</a>
 										</div>
 									</div>
 								</div>
@@ -129,6 +123,7 @@
 
 	 
 	</div>
+</div>
 </div>
 <!-- End Product Section -->
 <!-- Start Why Choose Us Section -->

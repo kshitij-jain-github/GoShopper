@@ -34,12 +34,13 @@ a {
     }
 
 .custom-navbar {
-    background: #BCA37F !important;
+    background: #16404D !important;
+ 
   
 }
 
     .custom-navbar .navbar-brand {
-        font-size: 32px;
+        font-size: 26px;
         font-weight: 600;
     }
 
@@ -81,7 +82,7 @@ a {
         bottom: 0;
         left: 8px;
         right: 8px;
-        background: #f9bf29;
+        background: #DDA853;
         height: 5px;
         opacity: 1;
         visibility: visible;
@@ -132,7 +133,7 @@ a {
     }
 
 .hero {
-    background: #BCA37F;
+    background: #16404D;
     padding: calc(4rem - 30px) 0 0rem 0;
 }
 
@@ -173,7 +174,7 @@ a {
 
 .hero p {
     color: rgba(255, 255, 255, 0.5);
-    margin-botom: 30px;
+    margin-bottom: 30px;
 }
 
 .hero .hero-img-wrap {
@@ -253,8 +254,8 @@ a {
     }
 
     .btn.btn-primary {
-        background: #BCA37F;
-        border-color: #BCA37F;
+        background: #16404D;
+        border-color: #16404D;
     }
 
         .btn.btn-primary:hover {
@@ -264,8 +265,8 @@ a {
 
     .btn.btn-secondary {
         color: #2f2f2f;
-        background: #f9bf29;
-        border-color: #f9bf29;
+        background: #DDA853;
+        border-color: #DDA853;
     }
 
         .btn.btn-secondary:hover {
@@ -523,7 +524,7 @@ a {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            border: 2px solid #BCA37F;
+            border: 2px solid #16404D;
             position: absolute;
             left: 0;
             top: 8px;
@@ -648,7 +649,7 @@ a {
 }
 
     .testimonial-slider-wrap #testimonial-nav > span:hover {
-        background: #BCA37F;
+        background: #16404D;
         color: #ffffff;
     }
 
@@ -702,7 +703,7 @@ a {
         }
 
         .testimonial-slider-wrap .tns-nav button:hover:before, .testimonial-slider-wrap .tns-nav button.tns-nav-active:before {
-            background-color: #BCA37F;
+            background-color: #16404D;
         }
 
 .before-footer-section {
@@ -791,7 +792,7 @@ a {
 .footer-section .subscription-form h3 {
     font-size: 18px;
     font-weight: 500;
-    color: #BCA37F;
+    color: #16404D;
 }
 
 .footer-section .subscription-form .form-control {
@@ -804,7 +805,7 @@ a {
         outline: none;
         -webkit-box-shadow: none;
         box-shadow: none;
-        border-color: #BCA37F;
+        border-color: #16404D;
         -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
     }
@@ -858,7 +859,7 @@ a {
     font-size: 32px;
     font-weight: 500;
     text-decoration: none;
-    color: #BCA37F;
+    color: #16404D;
 }
 
 .footer-section .custom-social li {
@@ -873,12 +874,12 @@ a {
         line-height: 40px;
         display: inline-block;
         background: #dce5e4;
-        color: #BCA37F;
+        color: #16404D;
         border-radius: 50%;
     }
 
         .footer-section .custom-social li a:hover {
-            background: #BCA37F;
+            background: #16404D;
             color: #ffffff;
         }
 
@@ -904,7 +905,7 @@ a {
         outline: none;
         -webkit-box-shadow: none;
         box-shadow: none;
-        border-color: #BCA37F;
+        border-color: #16404D;
         -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
     }
@@ -937,7 +938,7 @@ a {
         height: 50px;
         line-height: 50px;
         text-align: center;
-        background: #BCA37F;
+        background: #16404D;
         margin-right: 20px;
         color: #ffffff;
     }
@@ -975,7 +976,7 @@ textarea {
     }
 
     .site-blocks-table tbody tr:first-child td {
-        border-top: 1px solid #BCA37F !important;
+        border-top: 1px solid #16404D !important;
     }
 
     .site-blocks-table .btn {
@@ -999,12 +1000,12 @@ textarea {
 }
 
 .text-primary {
-    color: #BCA37F !important;
+    color: #16404D !important;
 }
 
 .thankyou-icon {
     position: relative;
-    color: #BCA37F;
+    color: #16404D;
 }
 
     .thankyou-icon:before {

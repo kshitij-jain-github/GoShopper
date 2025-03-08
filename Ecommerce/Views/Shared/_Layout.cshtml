@@ -22,17 +22,17 @@
     <header>
 
         <!-- Start Header/Navigation -->
-        <nav class="custom-navbar navbar navbar navbar-expand-md navbar-primary text-light" arial-label="GoShopper navigation bar">
+        <nav class="custom-navbar me-0 navbar navbar-expand-md navbar-primary text-light" arial-label="GoShopper navigation bar">
 
             <div class="container">
-				<a class="navbar-brand text-light" asp-area="Customer" asp-controller="Home" asp-action="Index"><img src="~/images/hanger.png" width="90" style="transform:rotate(-10deg);"  /> <i> GoShopper</i></a>
+				<a class="navbar-brand text-light" asp-area="Customer" asp-controller="Home" asp-action="Index"><img src="~/images/hanger.png" width="80" style="transform:rotate(-10deg);"  /> <i> GoShopper</i></a>
 
 				<button class="navbar-toggler border-white text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsFurni" aria-controls="navbarsFurni" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon "></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarsFurni">
-                    <ul class="custom-navbar-nav navbar-nav ms-auto mb-2 mb-md-0">
+                    <ul class="custom-navbar-nav navbar-nav mx-auto mb-2 mb-md-0">
                         <li class="nav-item active">
                             <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index" >Home</a>
                           
@@ -47,7 +47,7 @@
                        
                     </ul>
 
-                    <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 ms-5">
+                    <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 mx-auto">
 
 						<li><a class="nav-link text-light" asp-area="Customer" asp-controller="Cart" asp-action="Index">Cart <span class="fa fa-shopping-cart"> </span> </a></li>
                                             <partial name="_LoginPartial" /> 
