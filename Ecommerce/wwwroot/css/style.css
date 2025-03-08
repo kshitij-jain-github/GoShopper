@@ -12,7 +12,7 @@ body {
     line-height: 28px;
     color: #6a6a6a;
     font-size: 14px;
-    background-color: #eff0f2;
+    background-color: #f2f1ef;
 }
 
 a {
@@ -34,9 +34,8 @@ a {
     }
 
 .custom-navbar {
-    background: #1F74BA !important;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    background: #BCA37F !important;
+  
 }
 
     .custom-navbar .navbar-brand {
@@ -133,7 +132,7 @@ a {
     }
 
 .hero {
-    background: #1F74BA;
+    background: #BCA37F;
     padding: calc(4rem - 30px) 0 0rem 0;
 }
 
@@ -254,8 +253,8 @@ a {
     }
 
     .btn.btn-primary {
-        background: #1F74BA;
-        border-color: #1F74BA;
+        background: #BCA37F;
+        border-color: #BCA37F;
     }
 
         .btn.btn-primary:hover {
@@ -524,7 +523,7 @@ a {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            border: 2px solid #1F74BA;
+            border: 2px solid #BCA37F;
             position: absolute;
             left: 0;
             top: 8px;
@@ -649,7 +648,7 @@ a {
 }
 
     .testimonial-slider-wrap #testimonial-nav > span:hover {
-        background: #1F74BA;
+        background: #BCA37F;
         color: #ffffff;
     }
 
@@ -703,7 +702,7 @@ a {
         }
 
         .testimonial-slider-wrap .tns-nav button:hover:before, .testimonial-slider-wrap .tns-nav button.tns-nav-active:before {
-            background-color: #1F74BA;
+            background-color: #BCA37F;
         }
 
 .before-footer-section {
@@ -792,7 +791,7 @@ a {
 .footer-section .subscription-form h3 {
     font-size: 18px;
     font-weight: 500;
-    color: #1F74BA;
+    color: #BCA37F;
 }
 
 .footer-section .subscription-form .form-control {
@@ -805,7 +804,7 @@ a {
         outline: none;
         -webkit-box-shadow: none;
         box-shadow: none;
-        border-color: #1F74BA;
+        border-color: #BCA37F;
         -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
     }
@@ -859,7 +858,7 @@ a {
     font-size: 32px;
     font-weight: 500;
     text-decoration: none;
-    color: #1F74BA;
+    color: #BCA37F;
 }
 
 .footer-section .custom-social li {
@@ -874,12 +873,12 @@ a {
         line-height: 40px;
         display: inline-block;
         background: #dce5e4;
-        color: #1F74BA;
+        color: #BCA37F;
         border-radius: 50%;
     }
 
         .footer-section .custom-social li a:hover {
-            background: #1F74BA;
+            background: #BCA37F;
             color: #ffffff;
         }
 
@@ -905,7 +904,7 @@ a {
         outline: none;
         -webkit-box-shadow: none;
         box-shadow: none;
-        border-color: #1F74BA;
+        border-color: #BCA37F;
         -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
     }
@@ -938,7 +937,7 @@ a {
         height: 50px;
         line-height: 50px;
         text-align: center;
-        background: #1F74BA;
+        background: #BCA37F;
         margin-right: 20px;
         color: #ffffff;
     }
@@ -976,7 +975,7 @@ textarea {
     }
 
     .site-blocks-table tbody tr:first-child td {
-        border-top: 1px solid #1F74BA !important;
+        border-top: 1px solid #BCA37F !important;
     }
 
     .site-blocks-table .btn {
@@ -1000,12 +999,12 @@ textarea {
 }
 
 .text-primary {
-    color: #1F74BA !important;
+    color: #BCA37F !important;
 }
 
 .thankyou-icon {
     position: relative;
-    color: #1F74BA;
+    color: #BCA37F;
 }
 
     .thankyou-icon:before {
