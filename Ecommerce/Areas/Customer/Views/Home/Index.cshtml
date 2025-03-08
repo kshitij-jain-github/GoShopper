@@ -41,7 +41,7 @@
 			</div>
 			<div class="col-lg-7">
 				<div class="hero-img-wrap">
-					<img src="~/images/couch.png" class="img-fluid">
+					<img src="~/images/cloths.png" class="img-fluid mt-4 "    >
 				</div>
 			</div>
 		</div>
@@ -61,9 +61,10 @@
 				<p><a href="shop.html" class="btn">Explore</a></p>
 			</div>
 			<!-- End Column 1 -->
-			<!-- Start Cloth Categories Section -->
-			 
-				 
+			<!-- Start Popular Product -->
+			<div class="popular-product">
+				<div class="container">
+					<div class="row">
 						@if (ViewBag.Categories != null)
 						{
 							foreach (var category in ViewBag.Categories)
@@ -72,37 +73,46 @@
 								string imagePath = "";
 								if (category.Name.ToLower().Contains("jeans"))
 								{
-									imagePath = Url.Content("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsuPoKyaQziiS9_O833p51-jRtrse7MfShCg&s");
+									imagePath = Url.Content("~/images/jeans-stack.png");
 								}
 								else if (category.Name.ToLower().Contains("men tshirt"))
 								{
-									imagePath = Url.Content("https://png.pngtree.com/png-vector/20210807/ourmid/pngtree-blue-tshirt-vector-mockup-png-image_3787085.jpg");
+									imagePath = Url.Content("~/images/baige-tshirt.png");
 								}
 								else if (category.Name.ToLower().Contains("men shirt"))
 								{
-									imagePath = Url.Content("https://png.pngtree.com/png-clipart/20230913/original/pngtree-flannel-shirt-vector-png-image_11059943.png");
+									imagePath = Url.Content("~/images/shirt-stack.png");
 								}
 								else if (category.Name.ToLower().Contains("trousers"))
 								{
-									imagePath = Url.Content("https://img.freepik.com/premium-vector/trouser-pant-technical-drawing-vector-illustration-template-front-back-views_1273211-235.jpg");
+									imagePath = Url.Content("~/images/baige-trouser.png");
 								}
 								else if (category.Name.ToLower().Contains("track pants"))
 								{
-									imagePath = Url.Content("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMq29WGMMq6RKCTEmew-9QC7K3DxoBgq2WUACNcr2msuSwXreLcnh1NcuxgabJX6keEDc&usqp=CAU");
+									imagePath = Url.Content("~/images/pink-track-pant.png");
 								}
 								else if (category.Name.ToLower().Contains("kurta & sets"))
 								{
-						imagePath = Url.Content("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxmHPiRjpVhIk337zc1DHnhc_xJTnsrAcFKQ&s");
-			}
+									imagePath = Url.Content("~/images/white-gold-kurta.png");
+								}
 								else
 								{
 									imagePath = Url.Content("~/images/default-category.png");
 								}
-								<div class="col-12 col-md-4 col-lg-3 mb-5 mb-md-0">
-									<a class="product-item" href="@Url.Action("Products", "Home", new { area = "Customer", category = category.Id })">
-										<img src="@imagePath" class="img-fluid product-thumbnail" alt="@category.Name" />
-										<h3 class="product-title">@category.Name</h3>
-									</a>
+						 
+								<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
+									<div class="product-item-sm d-flex">
+										<div class="thumbnail">
+											<a  href="@Url.Action("Products", "Home", new { area = "Customer", category = category.Id })">
+												<img src="@imagePath" alt="@category.Name" class="img-fluid">
+											</a>
+										</div>
+										<div class="pt-3">
+											<h3>@category.Name</h3>
+											<p>Explore our latest collection of @category.Name and find the perfect fit for you.</p>
+											<p><a href="@Url.Action("Products", "Home", new { area = "Customer", category = category.Id })">View More</a></p>
+										</div>
+									</div>
 								</div>
 							}
 						}
@@ -113,12 +123,11 @@
 							</div>
 						}
 					</div>
-			 
-			 
-			<!-- End Cloth Categories Section -->
+				</div>
+			</div>
+			<!-- End Popular Product -->
 
-
-		</div>
+	 
 	</div>
 </div>
 <!-- End Product Section -->
@@ -176,7 +185,7 @@
 
 			<div class="col-lg-5">
 				<div class="img-wrap">
-					<img src="~/images/why-choose-us-img.jpg" alt="Image" class="img-fluid">
+					<img src="~/images/black-trouser-man.png" alt="Image" class="img-fluid">
 				</div>
 			</div>
 
@@ -188,14 +197,13 @@
 <div class="we-help-section">
 	<div class="container">
 		<div class="row justify-content-between">
-			<div class="col-lg-7 mb-5 mb-lg-0">
-				<div class="imgs-grid">
-					<div class="grid grid-1"><img src="~/images/img-grid-1.jpg" alt="Untree.co"></div>
-					<div class="grid grid-2"><img src="~/images/img-grid-2.jpg" alt="Untree.co"></div>
-					<div class="grid grid-3"><img src="~/images/img-grid-3.jpg" alt="Untree.co"></div>
+			<div class="col-lg-6  mb-5 mb-lg-0">
+				<div class="imgs-grid mx-auto">
+					<div class="grid grid-1"><img src="~/images/check-shirt-man.png" alt="img"></div>
+					 
 				</div>
 			</div>
-			<div class="col-lg-5 ps-lg-5">
+			<div class="col-lg-6 ps-lg-5">
 				<h2 class="section-title mb-4">We Help You Make Modern Interior Design</h2>
 				<p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant morbi tristique senectus et netus et malesuada</p>
 
@@ -211,54 +219,7 @@
 	</div>
 </div>
 <!-- End We Help Section -->
-<!-- Start Popular Product -->
-<div class="popular-product">
-	<div class="container">
-		<div class="row">
 
-			<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
-				<div class="product-item-sm d-flex">
-					<div class="thumbnail">
-						<img src="~/images/product-1.png" alt="Image" class="img-fluid">
-					</div>
-					<div class="pt-3">
-						<h3>Nordic Chair</h3>
-						<p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-						<p><a href="#">Read More</a></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
-				<div class="product-item-sm d-flex">
-					<div class="thumbnail">
-						<img src="~/images/product-2.png" alt="Image" class="img-fluid">
-					</div>
-					<div class="pt-3">
-						<h3>Kruzo Aero Chair</h3>
-						<p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-						<p><a href="#">Read More</a></p>
-					</div>
-				</div>
-			</div>
-
-			<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0">
-				<div class="product-item-sm d-flex">
-					<div class="thumbnail">
-						<img src="~/images/product-3.png" alt="Image" class="img-fluid">
-					</div>
-					<div class="pt-3">
-						<h3>Ergonomic Chair</h3>
-						<p>Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio </p>
-						<p><a href="#">Read More</a></p>
-					</div>
-				</div>
-			</div>
-
-		</div>
-	</div>
-</div>
-<!-- End Popular Product -->
 <!-- Start Testimonial Slider -->
 <div class="testimonial-section">
 	<div class="container">
