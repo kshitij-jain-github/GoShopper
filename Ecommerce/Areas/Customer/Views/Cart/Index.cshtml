@@ -1,129 +1,18 @@
 ﻿@model Ecommerce.Model.ViewModel.ShoppingCartVM
 
-<div class="untree_co-section before-footer-section">
-    <div class="container">
-        <div class="row mb-5">
-            <form class="col-md-12" method="post">
-                <div class="site-blocks-table">
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th class="product-thumbnail">Image</th>
-                                <th class="product-name">Product</th>
-                                <th class="product-price">Price</th>
-                                <th class="product-quantity">Quantity</th>
-                                <th class="product-total">Total</th>
-                                <th class="product-remove">Remove</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                       
-                                @foreach (var item in Model.ShoppingCartList)
-                                {
-                                <tr>
-                                    <td class="product-thumbnail">
-                                        <img src="@item.Product.ImageUrl" alt="@item.Product.Product_Name" class="img-fluid" style="max-width: 100px;">
-                                    </td>
-                                    <td class="product-name">
-                                        <h2 class="h5 text-black">@item.Product.Product_Name</h2>
-                                        
-                                    </td>
-                                    <td class="product-price">
-                                            @item.Product.Price.ToString("c")
-                                    </td>
-                                    <td class="product-quantity">
-                                        <div class="input-group mb-3 d-flex align-items-center quantity-container" style="max-width: 120px;">
-                                            <div class="input-group-prepend">
-                                                <a class="btn btn-outline-secondary decrease" href="@Url.Action("minus", new { cartId = item.Id })" role="button">&minus;</a>
-                                            </div>
-                                            <input type="text" class="form-control text-center quantity-amount" name="quantity_@item.Id" value="@item.Count" readonly aria-label="Quantity">
-                                            <div class="input-group-append">
-                                                <a class="btn btn-outline-secondary increase" href="@Url.Action("plus", new { cartId = item.Id })" role="button">&plus;</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    <td class="product-total">
-                                            @((item.Product.Price * item.Count).ToString("c"))
-                                    </td>
-                                    <td class="product-remove">
-                                        <a class="btn btn-outline-danger btn-sm" href="@Url.Action("remove", new { cartId = item.Id })">X</a>
-                                    </td>
-                                </tr>
-                                }
-                         
-                          
-                        </tbody>
-                    </table>
-                </div>
-            </form>
-        </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <div class="row mb-5">
-                    <div class="col-md-6 mb-3 mb-md-0">
-                        <button class="btn btn-black btn-sm btn-block">Update Cart</button>
-                    </div>
-                    <div class="col-md-6">
-                        <button class="btn btn-outline-black btn-sm btn-block">Continue Shopping</button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <label class="text-black h4" for="coupon">Coupon</label>
-                        <p>Enter your coupon code if you have one.</p>
-                    </div>
-                    <div class="col-md-8 mb-3 mb-md-0">
-                        <input type="text" class="form-control py-3" id="coupon" placeholder="Coupon Code">
-                    </div>
-                    <div class="col-md-4">
-                        <button class="btn btn-black">Apply Coupon</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6 pl-5">
-                <div class="row justify-content-center">
-                    <div class="col-md-7">
-                        <div class="row">
-                            <div class="col-md-12 text-right border-bottom mb-5">
-                                <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
-                            </div>
-                        </div>
-                      
-                        <div class="row mb-5">
-                            <div class="col-md-6">
-                                <span class="text-black">Total</span>
-                            </div>
-                            <div class="col-md-6 text-right">
-                                <strong class="text-black">@Model.OrderHeader.OrderTotal.ToString("c")</strong>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12">
-                                <a class="btn btn-black btn-lg py-3 btn-block" asp-action="Summary" >Proceed To Checkout</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
+ 
 <form method="post">
 	<br />
 	<div class="container">
 		<div class="card">
-			<div class="card-header bg-dark text-light ml-0">
+			<div class="card-header bg-light text-dark ml-0">
 				<div class="row">
 					<div class="col-6  pt-2">
 						<i class="fa fa-shopping-cart"></i> &nbsp;
 						Shopping Cart
 					</div>
 					<div class="col-6 text-end">
-						<a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-outline-info btn-sm">Continue Shopping</a>
+						<a asp-area="Customer" asp-controller="Home" asp-action="Index" class="btn btn-primary btn-sm">Continue Shopping</a>
 					</div>
 				</div>
 			</div>
@@ -133,11 +22,11 @@
 				{
 					<div class="row">
 						<div class="d-none d-lg-block col-lg-1 text-center py-2">
-							<img src="@item.Product.ImageUrl" class="rounded" width="100%" />
+							<img src="@item.Product.ImageUrl" class="rounded" width="100" />
 						</div>
-						<div class="col-12 col-lg-6 pt-md-3">
+						<div class="col-12 col-lg-6 pt-md-3 text-center  ">
 							<h5><strong>@item.Product.Product_Name</strong></h5>
-							<p><small>@Html.Raw(item.Product.Description)</small></p>
+						 
 						</div>
 						<div class="col-12  col-lg-5 text-center row">
 							<div class="col-4 text-md-right pt-4">
@@ -172,8 +61,8 @@
 					<div class="col-12 col-md-6 offset-md-6 col-lg-4 offset-lg-8 pr-4">
 						<ul class="list-group">
 							<li class="list-group-item d-flex justify-content-between bg-light">
-								<span class="text-info"> Total (USD)</span>
-								<strong class="text-info">@Model.OrderHeader.OrderTotal.ToString("c")</strong>
+								<span class="text-success"> Total (USD)</span>
+								<strong class="text-success">@Model.OrderHeader.OrderTotal.ToString("c")</strong>
 							</li>
 						</ul>
 					</div>
@@ -184,7 +73,7 @@
 			<div class="card-footer">
 				<div class="card-footer row">
 					<div class="col-sm-12 col-lg-4 col-md-6 offset-lg-8 offset-md-6 ">
-						<a asp-action="Summary" class="btn btn-success form-control">Summary</a>
+						<a asp-action="Summary" class="btn btn-primary form-control">Checkout</a>
 					</div>
 				</div>
 			</div>
