@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Ecommerce</title>
-    @* <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />  *@
+   <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />  
   <link href="~/css/bootstap.min.css" rel="stylesheet" />  
     <link href="~/css/tiny-slider.css" rel="stylesheet" />
     <link href="~/css/styles.scss" rel="stylesheet" />
@@ -20,7 +20,8 @@
 </head>
 <body>
     <header>
-
+  
+	 
         <!-- Start Header/Navigation -->
         <nav class="custom-navbar me-0 navbar navbar-expand-md navbar-primary text-light" arial-label="GoShopper navigation bar">
 
@@ -32,24 +33,30 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarsFurni">
-                    <ul class="custom-navbar-nav navbar-nav mx-auto mb-2 mb-md-0">
-                        <li class="nav-item active">
-                            <a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index" >Home</a>
-                          
-                        </li>
-						<li>
-							<a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Products">Shop</a>
-						</li>
-                        <li><a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">Manage Order</a></li>
-                        <li><a class="nav-link" asp-area="Admin" asp-controller="Category" asp-action="Index"   >Category</a></li>
-                        <li><a class="nav-link" asp-area="Admin" asp-controller="Product" asp-action="Index"  >Product</a></li>
-                        <li><a class="nav-link" asp-area="Admin" asp-controller="Company" asp-action="Index" >Company</a></li>
-                       
-                    </ul>
+					<ul class="custom-navbar-nav navbar-nav mx-auto mb-2 mb-md-0">
+						@if (User.IsInRole("Admin"))
+						{
+							<li><a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Products">Shop</a></li>
+							<li><a class="nav-link" asp-area="Admin" asp-controller="Order" asp-action="Index">Manage Order</a></li>
+							<li><a class="nav-link" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a></li>
+							<li><a class="nav-link" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a></li>
+							<li><a class="nav-link" asp-area="Admin" asp-controller="Company" asp-action="Index">Company</a></li>
+						}
+						else
+						{
+							<li><a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
+
+							<li><a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Products">Shop</a></li>
+							<li><a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="About">About</a></li>
+							<li><a class="nav-link" asp-area="Customer" asp-controller="Home" asp-action="Contact">Contact</a></li>
+								<li><a class="nav-link text-light" asp-area="Customer" asp-controller="Cart" asp-action="Index">Cart <span class="fa fa-shopping-cart"> </span> </a></li>
+						}
+					</ul>
+
 
                     <ul class="custom-navbar-cta navbar-nav mb-2 mb-md-0 mx-auto">
 
-						<li><a class="nav-link text-light" asp-area="Customer" asp-controller="Cart" asp-action="Index">Cart <span class="fa fa-shopping-cart"> </span> </a></li>
+					 
                                             <partial name="_LoginPartial" /> 
                     </ul>
                 </div>

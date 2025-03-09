@@ -290,7 +290,7 @@ a {
 }
 
 .product-section {
-    padding: 7rem 0;
+    padding: 3rem 0;
 }
 
     .product-section .product-item {
@@ -385,7 +385,7 @@ a {
         }
 
 .why-choose-section {
-    padding: 7rem 0;
+    padding: 3rem 0;
 }
 
     .why-choose-section .img-wrap {
@@ -443,7 +443,7 @@ a {
     }
 
 .we-help-section {
-    padding: 7rem 0;
+    padding: 3rem 0;
 }
 
     .we-help-section .imgs-grid {
@@ -582,7 +582,7 @@ a {
         }
 
 .testimonial-section {
-    padding: 3rem 0 7rem 0;
+    padding: 3rem 0;
 }
 
 .testimonial-slider-wrap {
@@ -707,11 +707,11 @@ a {
         }
 
 .before-footer-section {
-    padding: 7rem 0 12rem 0 !important;
+    padding: 3rem 0 !important;
 }
 
 .blog-section {
-    padding: 7rem 0 12rem 0;
+    padding:3rem 0;
 }
 
     .blog-section .post-entry a {
@@ -892,7 +892,7 @@ a {
     }
 
 .untree_co-section {
-    padding: 7rem 0;
+    padding: 3rem 0;
 }
 
 .form-control {
