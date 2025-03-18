@@ -12,7 +12,7 @@ body {
     line-height: 28px;
     color: #6a6a6a;
     font-size: 14px;
-    background-color: #fffdf3;
+    background-color: #EEEEEE;
 }
 
 a {
@@ -34,7 +34,7 @@ a {
     }
 
 .custom-navbar {
-    background: #606c38 !important;
+    background: #020402 !important;
  
   
 }
@@ -82,7 +82,7 @@ a {
         bottom: 0;
         left: 8px;
         right: 8px;
-        background: #dda15e;
+        background: #ceb5b7;
         height: 5px;
         opacity: 1;
         visibility: visible;
@@ -133,7 +133,7 @@ a {
     }
 
 .hero {
-    background: #606c38;
+    background: #020402;
     padding: calc(4rem - 30px) 0 0rem 0;
 }
 
@@ -254,24 +254,24 @@ a {
     }
 
     .btn.btn-primary {
-        background: #606c38;
-        border-color: #606c38;
+        background: #ceb5b7;
+        border-color: #ceb5b7;
     }
 
         .btn.btn-primary:hover {
-            background: #314d43;
-            border-color: #314d43;
+            background: #cea7aa;
+            border-color: #cea7aa;
         }
 
     .btn.btn-secondary {
-        color: #2f2f2f;
-        background: #dda15e;
-        border-color: #dda15e;
+        color: #2f2f22;
+        background: #ceb5b7;
+        border-color: #ceb5b7;
     }
 
         .btn.btn-secondary:hover {
-            background: #f8b810;
-            border-color: #f8b810;
+            background: #d0afb2;
+            border-color: #d0afb2;
         }
 
     .btn.btn-white-outline {
@@ -524,7 +524,7 @@ a {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            border: 2px solid #606c38;
+            border: 2px solid #020402;
             position: absolute;
             left: 0;
             top: 8px;
@@ -649,7 +649,7 @@ a {
 }
 
     .testimonial-slider-wrap #testimonial-nav > span:hover {
-        background: #606c38;
+        background: #020402;
         color: #ffffff;
     }
 
@@ -703,7 +703,7 @@ a {
         }
 
         .testimonial-slider-wrap .tns-nav button:hover:before, .testimonial-slider-wrap .tns-nav button.tns-nav-active:before {
-            background-color: #606c38;
+            background-color: #020402;
         }
 
 .before-footer-section {
@@ -792,7 +792,7 @@ a {
 .footer-section .subscription-form h3 {
     font-size: 18px;
     font-weight: 500;
-    color: #606c38;
+    color: #020402;
 }
 
 .footer-section .subscription-form .form-control {
@@ -805,7 +805,7 @@ a {
         outline: none;
         -webkit-box-shadow: none;
         box-shadow: none;
-        border-color: #606c38;
+        border-color: #020402;
         -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
     }
@@ -859,7 +859,7 @@ a {
     font-size: 32px;
     font-weight: 500;
     text-decoration: none;
-    color: #606c38;
+    color: #020402;
 }
 
 .footer-section .custom-social li {
@@ -874,12 +874,12 @@ a {
         line-height: 40px;
         display: inline-block;
         background: #dce5e4;
-        color: #606c38;
+        color: #020402;
         border-radius: 50%;
     }
 
         .footer-section .custom-social li a:hover {
-            background: #606c38;
+            background: #020402;
             color: #ffffff;
         }
 
@@ -905,7 +905,7 @@ a {
         outline: none;
         -webkit-box-shadow: none;
         box-shadow: none;
-        border-color: #606c38;
+        border-color: #020402;
         -webkit-box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
         box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.2);
     }
@@ -938,7 +938,7 @@ a {
         height: 50px;
         line-height: 50px;
         text-align: center;
-        background: #606c38;
+        background: #020402;
         margin-right: 20px;
         color: #ffffff;
     }
@@ -976,7 +976,7 @@ textarea {
     }
 
     .site-blocks-table tbody tr:first-child td {
-        border-top: 1px solid #606c38 !important;
+        border-top: 1px solid #020402 !important;
     }
 
     .site-blocks-table .btn {
@@ -1000,12 +1000,12 @@ textarea {
 }
 
 .text-primary {
-    color: #606c38 !important;
+    color: #020402 !important;
 }
 
 .thankyou-icon {
     position: relative;
-    color: #606c38;
+    color: #020402;
 }
 
     .thankyou-icon:before {
