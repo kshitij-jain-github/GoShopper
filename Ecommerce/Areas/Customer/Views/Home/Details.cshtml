@@ -1,145 +1,377 @@
 ﻿@model ShoppingCart
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>@Model.Product.Product_Name - Product Details</title>
+    <!-- Bootstrap and Google Fonts -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800&display=swap" rel="stylesheet">
+    <!-- Font Awesome and OwlCarousel CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css">
+    <style>
+        /* Custom CSS from your snippet */
+        .pd-wrap {
+            padding: 40px 0;
+            font-family: 'Poppins', sans-serif;
+        }
 
+        .heading-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
- 
-<!--Main layout-->
+            .heading-section h2 {
+                font-size: 32px;
+                font-weight: 500;
+                padding-top: 10px;
+                padding-bottom: 15px;
+            }
 
-     <form method="post" >
-     <div class="container ">
-        <a asp-action="Index" class="btn btn-outline-primary bg-gradient mt-2 mb-5 fw-semibold btn-sm text-uppercase">
-            <small>Back to home</small>
-        </a>
-        <!--Grid row-->
-        <div class="row  px-xl-5 ">
-            <!--Grid column-->
-            <div class="col-lg-5 mb-30">
-                <div id="product-carousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner bg-light">
-                        <div class="carousel-item active">
-                            <img class="w-100 h-100" src="@Model.Product.ImageUrl" alt="Image">
-                        </div>
-                         
-                    </div>
-                    <a class="carousel-control-prev" href="#product-carousel" data-slide="prev">
-                        <i class="fa fa-2x fa-angle-left text-dark"></i>
-                    </a>
-                    <a class="carousel-control-next" href="#product-carousel" data-slide="next">
-                        <i class="fa fa-2x fa-angle-right text-dark"></i>
-                    </a>
-                </div>
+        .product-slider img,
+        .product-thumb img {
+            width: 100%;
+        }
+
+        .product-thumb .item img {
+            height: 100px;
+        }
+
+        .product-dtl {
+            padding: 15px;
+        }
+
+        .product-name {
+            font-size: 22px;
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .reviews-counter {
+            font-size: 13px;
+        }
+
+        .rate {
+            float: left;
+            padding-right: 10px;
+        }
+
+            .rate:not(:checked) > input {
+                position: absolute;
+                top: -9999px;
+            }
+
+            .rate:not(:checked) > label {
+                float: right;
+                width: 15px;
+                overflow: hidden;
+                white-space: nowrap;
+                cursor: pointer;
+                font-size: 21px;
+                color: #ccc;
+            }
+
+                .rate:not(:checked) > label:before {
+                    content: '\2605';
+                }
+
+            .rate > input:checked ~ label {
+                color: #ffc700;
+            }
+
+            .rate:not(:checked) > label:hover,
+            .rate:not(:checked) > label:hover ~ label {
+                color: #deb217;
+            }
+
+            .rate > input:checked + label:hover,
+            .rate > input:checked + label:hover ~ label,
+            .rate > input:checked ~ label:hover,
+            .rate > input:checked ~ label:hover ~ label,
+            .rate > label:hover ~ input:checked ~ label {
+                color: #c59b08;
+            }
+
+        .product-price-discount {
+            font-size: 22px;
+            padding: 10px 0;
+        }
+
+            .product-price-discount span.line-through {
+                text-decoration: line-through;
+                margin-left: 10px;
+                font-size: 14px;
+                color: #a5a5a5;
+            }
+
+        .display-flex {
+            display: flex;
+        }
+
+        .product-dtl p {
+            font-size: 14px;
+            line-height: 24px;
+            color: #7a7a7a;
+        }
+
+        .product-dtl label {
+            font-size: 15px;
+        }
+
+        .product-count {
+            margin-top: 15px;
+        }
+
+        .qtyminus,
+        .qtyplus {
+            width: 34px;
+            height: 34px;
+            background: #212529;
+            text-align: center;
+            font-size: 19px;
+            line-height: 34px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .qtyminus {
+            border-radius: 3px 0 0 3px;
+        }
+
+        .qtyplus {
+            border-radius: 0 3px 3px 0;
+        }
+
+        .qty {
+            width: 60px;
+            text-align: center;
+        }
+
+        .round-black-btn {
+            border-radius: 4px;
+            background: #212529;
+            color: #fff;
+            padding: 7px 45px;
+            display: inline-block;
+            margin-top: 20px;
+            border: solid 2px #212529;
+            transition: all 0.5s;
+            text-decoration: none;
+        }
+
+            .round-black-btn:hover,
+            .round-black-btn:focus {
+                background: transparent;
+                color: #212529;
+            }
+
+        .product-info-tabs {
+            margin-top: 25px;
+        }
+
+            .product-info-tabs .nav-tabs {
+                border-bottom: 2px solid #d8d8d8;
+            }
+
+            .product-info-tabs .nav-link {
+                border: none;
+                border-bottom: 2px solid transparent;
+                color: #323232;
+            }
+
+                .product-info-tabs .nav-link.active,
+                .product-info-tabs .nav-link.active:hover {
+                    border-bottom: 2px solid #d8d8d8;
+                    font-weight: bold;
+                }
+
+            .product-info-tabs .tab-content .tab-pane {
+                padding: 30px 20px;
+                font-size: 15px;
+                color: #7a7a7a;
+            }
+
+        .review-heading {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+            color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="pd-wrap">
+        <div class="container">
+            <!-- Heading Section -->
+            <div class="heading-section">
+                <h2>@Model.Product.Product_Name</h2>
             </div>
-
-         
-            <!--Grid column-->
-            <div class="col-lg-7 h-auto mb-30">
-                <div class="h-100 bg-light p-30">
-                    <h3>@Model.Product.Product_Name</h3>
-                    <div class="d-flex mb-3">
-                      @Model.Product.Category.Name by @Model.Product.Brand
+            <div class="row">
+                <!-- Left Column: Product Image Carousel -->
+                <div class="col-lg-5 mb-30">
+                    <div id="product-carousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner bg-light">
+                            <div class="carousel-item active">
+                                <img class="w-100 h-100" src="@Url.Content(Model.Product.ImageUrl)" alt="Image">
+                            </div>
+                            @* If you have additional images, loop through them here *@
+                        </div>
                     </div>
-                    <h3 class="font-weight-semi-bold mb-4">
-                        <span class="me-1 h5">
-                            <del>$@Model.Product.ListPrice</del>
-                        </span>
-                        <span class=" text-primary me-3">$@Model.Product.Price</span>
-                    </h3>
-                    <p class="mb-4">
-                 @Html.Raw(Model.Product.Description)
-                    </p>
-                    <div class="d-flex mb-3">
-                        <strong class="text-dark mr-3">Sizes:</strong>
-                        <form>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-1" name="size">
-                                <label class="custom-control-label" for="size-1">XS</label>
+                </div>
+                <!-- Right Column: Product Details -->
+                <div class="col-md-6">
+                    <div class="product-dtl">
+                        <div class="product-info">
+                            <div class="product-name">@Model.Product.Product_Name</div>
+                            <div class="reviews-counter">
+                                <div class="rate">
+                                    <input type="radio" id="star5" name="rate" value="5" checked />
+                                    <label for="star5" title="5 stars">5 stars</label>
+                                    <input type="radio" id="star4" name="rate" value="4" checked />
+                                    <label for="star4" title="4 stars">4 stars</label>
+                                    <input type="radio" id="star3" name="rate" value="3" checked />
+                                    <label for="star3" title="3 stars">3 stars</label>
+                                    <input type="radio" id="star2" name="rate" value="2" />
+                                    <label for="star2" title="2 stars">2 stars</label>
+                                    <input type="radio" id="star1" name="rate" value="1" />
+                                    <label for="star1" title="1 star">1 star</label>
+                                </div>
+                                <span>3 Reviews</span>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-2" name="size">
-                                <label class="custom-control-label" for="size-2">S</label>
+                            <div class="product-price-discount">
+                                <span class="text-primary">$@Model.Product.Price</span>
+                                <span class="line-through">$@Model.Product.ListPrice</span>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-3" name="size">
-                                <label class="custom-control-label" for="size-3">M</label>
+                        </div>
+                        <p>@Html.Raw(Model.Product.Description)</p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label for="size">Size</label>
+                                <select id="size" name="size" class="form-control">
+                                    <option>S</option>
+                                    <option>M</option>
+                                    <option>L</option>
+                                    <option>XL</option>
+                                </select>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-4" name="size">
-                                <label class="custom-control-label" for="size-4">L</label>
+                            <div class="col-md-6">
+                                <label for="color">Color</label>
+                                <select id="color" name="color" class="form-control">
+                                    <option>Blue</option>
+                                    <option>Green</option>
+                                    <option>Red</option>
+                                </select>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="size-5" name="size">
-                                <label class="custom-control-label" for="size-5">XL</label>
+                        </div>
+                        <!-- Form for Add to Cart -->
+                        <form method="post">
+                            <div class="product-count">
+                                <label for="quantity">Quantity</label>
+                                <div class="display-flex">
+                                    <div class="qtyminus">-</div>
+                                    <!-- Use type="number" for better browser support -->
+                                    <input type="number" name="quantity" value="1" class="qty" min="1">
+                                    <div class="qtyplus">+</div>
+                                </div>
+                                <!-- Set type="submit" so that the form posts properly -->
+                                <button type="submit" class="round-black-btn">Add to Cart</button>
                             </div>
                         </form>
                     </div>
-                    <div class="d-flex mb-4">
-                        <strong class="text-dark mr-3">Colors:</strong>
-                        <form>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-1" name="color">
-                                <label class="custom-control-label" for="color-1">Black</label>
+                </div>
+            </div>
+            <!-- Product Info Tabs -->
+            <div class="product-info-tabs">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item">
+                        <a class="nav-link active" id="description-tab" data-toggle="tab" href="#description" role="tab"
+                           aria-controls="description" aria-selected="true">Description</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab"
+                           aria-controls="review" aria-selected="false">Reviews (0)</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                    <div class="tab-pane fade show active" id="description" role="tabpanel"
+                         aria-labelledby="description-tab">
+                        @Html.Raw(Model.Product.Description)
+                    </div>
+                    <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+                        <div class="review-heading">REVIEWS</div>
+                        <p class="mb-20">There are no reviews yet.</p>
+                        <form class="review-form">
+                            <div class="form-group">
+                                <label>Your rating</label>
+                                <div class="reviews-counter">
+                                    <div class="rate">
+                                        <input type="radio" id="rstar5" name="rate" value="5" />
+                                        <label for="rstar5" title="5 stars">5 stars</label>
+                                        <input type="radio" id="rstar4" name="rate" value="4" />
+                                        <label for="rstar4" title="4 stars">4 stars</label>
+                                        <input type="radio" id="rstar3" name="rate" value="3" />
+                                        <label for="rstar3" title="3 stars">3 stars</label>
+                                        <input type="radio" id="rstar2" name="rate" value="2" />
+                                        <label for="rstar2" title="2 stars">2 stars</label>
+                                        <input type="radio" id="rstar1" name="rate" value="1" />
+                                        <label for="rstar1" title="1 star">1 star</label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-2" name="color">
-                                <label class="custom-control-label" for="color-2">White</label>
+                            <div class="form-group">
+                                <label>Your message</label>
+                                <textarea class="form-control" rows="10"></textarea>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-3" name="color">
-                                <label class="custom-control-label" for="color-3">Red</label>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="text" name="name" class="form-control" placeholder="Name*">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <input type="email" name="email" class="form-control" placeholder="Email Id*">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-4" name="color">
-                                <label class="custom-control-label" for="color-4">Blue</label>
-                            </div>
-                            <div class="custom-control custom-radio custom-control-inline">
-                                <input type="radio" class="custom-control-input" id="color-5" name="color">
-                                <label class="custom-control-label" for="color-5">Green</label>
-                            </div>
+                            <button class="round-black-btn" type="submit">Submit Review</button>
                         </form>
-                    </div>
-                    <div class="d-flex align-items-center mb-4 pt-2">
-                        <div class="input-group quantity mr-3" style="width: 130px;">
-                            <div class="input-group-btn">
-                                <button class="btn btn-primary btn-minus">
-                                    <i class="fa fa-minus"></i>
-                                </button>
-                            </div>
-                            <input type="text" class="form-control bg-secondary border-0 text-center" value="1">
-                            <div class="input-group-btn">
-                                <button class="btn btn-primary btn-plus">
-                                    <i class="fa fa-plus"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <button class="btn btn-primary px-3">
-                            <i class="fa fa-shopping-cart mr-1"></i> Add To
-                            Cart
-                        </button>
-                    </div>
-                    <div class="d-flex pt-2">
-                        <strong class="text-dark mr-2">Share on:</strong>
-                        <div class="d-inline-flex">
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-facebook-f"></i>
-                            </a>
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-twitter"></i>
-                            </a>
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a class="text-dark px-2" href="">
-                                <i class="fab fa-pinterest"></i>
-                            </a>
-                        </div>
                     </div>
                 </div>
             </div>
-           
         </div>
-        <!--Grid row-->
- 
-        
     </div>
-    </form>
- 
- 
+    <!-- jQuery, Popper, Bootstrap, and OwlCarousel Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script>
+        $(document).ready(function () {
+          // Initialize any carousel if needed (adjust selectors if necessary)
+          $("#product-carousel").carousel();
+
+          // Use a robust selector with closest() in case DOM structure changes
+          $('.qtyplus').click(function (e) {
+            e.preventDefault();
+            var $qty = $(this).closest('.display-flex').find('.qty');
+            var currentVal = parseInt($qty.val());
+            if (!isNaN(currentVal)) {
+              $qty.val(currentVal + 1);
+            }
+          });
+          $('.qtyminus').click(function (e) {
+            e.preventDefault();
+            var $qty = $(this).closest('.display-flex').find('.qty');
+            var currentVal = parseInt($qty.val());
+            if (!isNaN(currentVal) && currentVal > 1) {
+              $qty.val(currentVal - 1);
+            }
+          });
+        });
+    </script>
+</body>
+</html>
