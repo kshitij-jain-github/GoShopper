@@ -4,146 +4,332 @@
 @{
     ViewData["Title"] = "Register";
 }
-@if (User.IsInRole(SD.Role_Admin))
-{
+ 
+   <style>
+     .form-container {
+         background-color: #fff;
+          font-size: 0;
+         padding: 30px;
+         border-radius: 20px;
+         box-shadow: 0 0 25px -15px rgba(0, 0, 0, 0.3);
+     }
 
-    <h1 class="pt-4">Register - ADMIN PORTAL</h1>
-}
-else
-{
-    <h1 class="pt-4">@ViewData["Title"]</h1>
-}
-<div class="row pt-4">
-    <div class="col-md-7 ">
-        <form id="registerForm" class="row" asp-route-returnUrl="@Model.ReturnUrl" method="post">
-            <h2>Create a new account.</h2>
-            <hr />
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-floating py-2 col-12">
-                <input asp-for="Input.Email" class="form-control" autocomplete="username" aria-required="true" />
-                <label asp-for="Input.Email"></label>
-                <span asp-validation-for="Input.Email" class="text-danger"></span>
-            </div>
-            <div class="form-floating py-2 col-6">
-                <input asp-for="Input.Name" class="form-control" aria-required="true" />
-                <label asp-for="Input.Name"></label>
-                <span asp-validation-for="Input.Name" class="text-danger"></span>
-            </div>
+     .form-container .title {
+         color: #000;
+         font-size: 25px;
+         font-weight: 600;
+         text-transform: capitalize;
+         margin: 0 0 25px;
+     }
 
-            <div class="form-floating py-2 col-6">
-                <input asp-for="Input.PhoneNumber" class="form-control" aria-required="true" />
-                <label asp-for="Input.PhoneNumber"></label>
-                <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
-            </div>
-            <div class="form-floating py-2 col-6">
-                <input asp-for="Input.StreetAddress" class="form-control" aria-required="true" />
-                <label asp-for="Input.StreetAddress"></label>
-                <span asp-validation-for="Input.StreetAddress" class="text-danger"></span>
-            </div>
-            <div class="form-floating py-2 col-6">
-                <input asp-for="Input.City" class="form-control" aria-required="true" />
-                <label asp-for="Input.City"></label>
-                <span asp-validation-for="Input.City" class="text-danger"></span>
-            </div>
-            <div class="form-floating py-2 col-6">
-                <input asp-for="Input.State" class="form-control" aria-required="true" />
-                <label asp-for="Input.State"></label>
-                <span asp-validation-for="Input.State" class="text-danger"></span>
-            </div>
-            <div class="form-floating py-2 col-6">
-                <input asp-for="Input.PostalCode" class="form-control" aria-required="true" />
-                <label asp-for="Input.PostalCode"></label>
-                <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
-            </div>
-            <div class="form-floating py-2 col-6">
-                <input asp-for="Input.Password" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.Password"></label>
-                <span asp-validation-for="Input.Password" class="text-danger"></span>
-            </div>
-            <div class="form-floating py-2 col-6">
-                <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" aria-required="true" />
-                <label asp-for="Input.ConfirmPassword"></label>
-                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
-            </div>
-            <div class="form-floating mb-3">
-                <select asp-for="Input.Role" asp-items="@Model.Input.RoleList " class="form-select">
-                    <option disabled selected>- Select Role -</option>
-                </select>
+         .form-container .title:after {
+             content: '';
+             background-color: #00A9EF;
+             height: 3px;
+             width: 60px;
+             margin: 10px 0 0;
+             display: block;
+             clear: both;
+         }
 
-            </div> <div class="form-floating mb-3">
-                <select asp-for="Input.CompanyId" asp-items="@Model.Input.CompanyList " class="form-select">
-                    <option disabled selected>- Select Company -</option>
-                </select>
+     .form-container .sub-title {
+         color: #333;
+         font-size: 18px;
+         font-weight: 600;
+         text-align: center;
+         text-transform: uppercase;
+         margin: 0 0 20px;
+     }
 
-            </div>
-            @if (User.IsInRole(SD.Role_Admin))
-            {
-                <div class="form-floating py-2 col-6">
-                    <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class=form-select>
-                        <option disabled selected>-Select Role-</option>
-                    </select>
+     .form-container .form-horizontal {
+         font-size: 0;
+     }
 
+         .form-container .form-horizontal .form-group {
+             color: #333;
+             width: 25%;
+             padding: 0 8px;
+             margin: 0 0 15px;
+             display: inline-block;
+         }
+
+             .form-container .form-horizontal .form-group:nth-child(4) {
+                 margin-bottom: 30px;
+             }
+
+             .form-container .form-horizontal .form-group label {
+                 font-size: 17px;
+                 font-weight: 600;
+             }
+
+         .form-container .form-horizontal .form-control {
+             color: #888;
+             background: #fff;
+             font-weight: 400;
+             letter-spacing: 1px;
+             height: 40px;
+             padding: 6px 12px;
+             border-radius: 10px;
+             border: 2px solid #e7e7e7;
+             box-shadow: none;
+         }
+
+             .form-container .form-horizontal .form-control:focus {
+                 box-shadow: 0 0 5px #dcdcdc;
+             }
+
+         .form-container .form-horizontal .check-terms {
+             padding: 0 8px;
+             margin: 0 0 25px;
+         }
+
+             .form-container .form-horizontal .check-terms .check-label {
+                 color: #333;
+                 font-size: 14px;
+                 font-weight: 500;
+                 font-style: italic;
+                 vertical-align: top;
+                 display: inline-block;
+             }
+
+             .form-container .form-horizontal .check-terms .checkbox {
+                 height: 17px;
+                 width: 17px;
+                 min-height: auto;
+                 margin: 2px 8px 0 0;
+                 border: 2px solid #d9d9d9;
+                 border-radius: 2px;
+                 cursor: pointer;
+                 display: inline-block;
+                 position: relative;
+                 appearance: none;
+                 -moz-appearance: none;
+                 -webkit-appearance: none;
+                 transition: all 0.3s ease 0s;
+             }
+
+                 .form-container .form-horizontal .check-terms .checkbox:before {
+                     content: '';
+                     height: 5px;
+                     width: 9px;
+                     border-bottom: 2px solid #00A9EF;
+                     border-left: 2px solid #00A9EF;
+                     transform: rotate(-45deg);
+                     position: absolute;
+                     left: 2px;
+                     top: 2.5px;
+                     transition: all 0.3s ease;
+                 }
+
+                 .form-container .form-horizontal .check-terms .checkbox:checked:before {
+                     opacity: 1;
+                 }
+
+                 .form-container .form-horizontal .check-terms .checkbox:not(:checked):before {
+                     opacity: 0;
+                 }
+
+                 .form-container .form-horizontal .check-terms .checkbox:focus {
+                     outline: none;
+                 }
+
+     .form-container .signin-link {
+         color: #333;
+         font-size: 14px;
+         width: calc(100% - 190px);
+         margin-right: 30px;
+         display: inline-block;
+         vertical-align: top;
+     }
+
+         .form-container .signin-link a {
+             color: #00A9EF;
+             font-weight: 600;
+             transition: all 0.3s ease 0s;
+         }
+
+             .form-container .signin-link a:hover {
+                 text-decoration: underline;
+             }
+
+     .form-container .form-horizontal .signup {
+         color: #fff;
+         background: #00A9EF;
+         font-size: 15px;
+         font-weight: 700;
+         text-transform: uppercase;
+         letter-spacing: 1px;
+         padding: 8px 15px 9px;
+         border-radius: 10px;
+         transition: all 0.3s ease 0s;
+     }
+
+     .form-container .form-horizontal .btn:hover,
+     .form-container .form-horizontal .btn:focus {
+         text-shadow: 0 0 5px rgba(0,0,0,0.5);
+         box-shadow: 3px 3px rgba(0,0,0,0.15),5px 5px rgba(0,0,0,0.1);
+         outline: none;
+     }
+    
+
+     .form-container .signin-link {
+         width: 100%;
+         margin: 0 10px 15px;
+     }
+
+     }
+</style>
+<div class="form-bg">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="form-container">
+                    <h3 class="title">Register</h3>
+                    <form id="registerForm" class="form-horizontal" asp-route-returnUrl="@Model.ReturnUrl" method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                        <!-- Account Information -->
+                        <div class="form-group">
+                            <label asp-for="Input.Email"></label>
+                            <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="Email Address" aria-required="true" />
+                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Input.Name"></label>
+                            <input asp-for="Input.Name" class="form-control" placeholder="User Name" aria-required="true" />
+                            <span asp-validation-for="Input.Name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Input.Password"></label>
+                            <input asp-for="Input.Password" class="form-control" autocomplete="new-password" placeholder="Password" aria-required="true" />
+                            <span asp-validation-for="Input.Password" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Input.ConfirmPassword"></label>
+                            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" placeholder="Confirm Password" aria-required="true" />
+                            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                        </div>
+
+                        <!-- Personal Information -->
+                         <div class="form-group">
+                            <label asp-for="Input.PhoneNumber"></label>
+                            <input asp-for="Input.PhoneNumber" class="form-control" placeholder="Phone Number" aria-required="true" />
+                            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Input.StreetAddress"></label>
+                            <input asp-for="Input.StreetAddress" class="form-control" placeholder="Street Address" aria-required="true" />
+                            <span asp-validation-for="Input.StreetAddress" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Input.City"></label>
+                            <input asp-for="Input.City" class="form-control" placeholder="City" aria-required="true" />
+                            <span asp-validation-for="Input.City" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Input.State"></label>
+                            <input asp-for="Input.State" class="form-control" placeholder="State" aria-required="true" />
+                            <span asp-validation-for="Input.State" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Input.PostalCode"></label>
+                            <input asp-for="Input.PostalCode" class="form-control" placeholder="Postal Code" aria-required="true" />
+                            <span asp-validation-for="Input.PostalCode" class="text-danger"></span>
+                        </div>
+
+                        <!-- Role and Company Selection -->
+                        <div class="form-group">
+                            <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-control">
+                                <option disabled selected>- Select Role -</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select asp-for="Input.CompanyId" asp-items="@Model.Input.CompanyList" class="form-control">
+                                <option disabled selected>- Select Company -</option>
+                            </select>
+                        </div>
+
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+                            <div class="form-group">
+                                <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-control">
+                                    <option disabled selected>-Select Role-</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <select asp-for="Input.CompanyId" style="display:none;" asp-items="@Model.Input.CompanyList" class="form-control">
+                                    <option disabled selected>-Select Company-</option>
+                                </select>
+                            </div>
+                        }
+
+                        <!-- Terms and Already have account on same line -->
+                        <div class="terms-login-container" style="display: flex; align-items: center; justify-content: space-between;">
+                            <div class="check-terms">
+                                <input type="checkbox" class="checkbox" id="agreeTerms" />
+                                <label class="check-label" for="agreeTerms">I agree to the terms</label>
+                            </div>
+                         
+                        </div>
+                        <div class="signin-link">
+                            Already have an account? Click here to <a asp-page="./login" >Login</a>
+                        </div>
+                        <!-- Create Account button centered -->
+                        <button id="registerSubmit" type="submit" class="btn signup" style="display: block; margin: 0 auto;">Create Account</button>
+                    </form>
                 </div>
-                <div class="form-floating py-2 col-6">
-                    <select asp-for="Input.CompanyId" style="display:none;" asp-items="@Model.Input.CompanyList" class=form-select>
-                        <option disabled selected>-Select Company-</option>
-                    </select>
-
+            </div>
+        </div>
+    </div>
+</div>
+@* 
+@if (!User.IsInRole(SD.Role_Admin))
+{
+    <div class="external-login">
+        <h3>Use another service to register.</h3>
+        <hr />
+        @{
+            if ((Model.ExternalLogins?.Count ?? 0) == 0)
+            {
+                <div>
+                    <p>
+                        There are no external authentication services configured. See this
+                        <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article</a>.
+                    </p>
                 </div>
             }
-            <button id="registerSubmit" type="submit" class="w-100 btn btn-primary">Register</button>
-        </form>
+            else
+            {
+                <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
+                    <div>
+                        <p>
+                            @foreach (var provider in Model.ExternalLogins)
+                            {
+                                <button type="submit" class="btn signup" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">
+                                    @provider.DisplayName
+                                </button>
+                            }
+                        </p>
+                    </div>
+                </form>
+            }
+        }
     </div>
-    @if (!User.IsInRole(SD.Role_Admin))
-    {
-        <div class="col-md-5 ">
-            <section>
-                <h3>Use another service to register.</h3>
-                <hr />
-                @{
-                    if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                    {
-                        <div>
-                            <p>
-                                There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">
-                                    article
-                                    about setting up this ASP.NET application to support logging in via external services
-                                </a>.
-                            </p>
-                        </div>
-                    }
-                    else
-                    {
-                        <form id="external-account" asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                            <div>
-                                <p>
-                                    @foreach (var provider in Model.ExternalLogins)
-                                    {
-                                        <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                    }
-                                </p>
-                            </div>
-                        </form>
-                    }
-                }
-            </section>
-        </div>
-    }
-</div>
+} *@
 
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
     <script>
         $(document).ready(function () {
             $('#Input_Role').change(function () {
-                var selection = $('#Input_Role Option:Selected').text();
+                var selection = $('#Input_Role option:selected').text();
                 if (selection != 'Company') {
                     $('#Input_CompanyId').hide();
                 }
                 else {
                     $('#Input_CompanyId').show();
                 }
-            })
-        })
+            });
+        });
     </script>
 }
