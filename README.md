@@ -55,5 +55,14 @@ GoShopper is a feature-rich e-commerce web application built with **.NET Core** 
 
 ---
 
-## 📁 Folder Structure
+🌱 What I Learned
+Implemented OAuth2 logins with Google & Facebook.
+
+Configured role-based policies for secure access control.
+
+Built session-backed cart and checkout flow.
+
+Set up email alerts for user actions and orders.
+
+Managed database schemas using EF Migrations and repository pattern.
 
