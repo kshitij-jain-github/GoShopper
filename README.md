@@ -1,4 +1,3 @@
-Here’s the **complete, detailed README** for your GoShopper project, fully written in plain text format. You can copy and paste this directly into your README.md file on GitHub.
 
 🛍️ GoShopper
 =============
